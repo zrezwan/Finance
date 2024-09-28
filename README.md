@@ -1,5 +1,5 @@
 # Finance
-Simplified stock portfolio management system
+Simplified stock portfolio management system with Flask
 
 ## Features
 Usage: `flask run`
