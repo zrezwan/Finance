@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+    <h1>Index</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Shares Owned</th>
+                <th>Current Price</th>
+                <th>Value of holding</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for stock in stocks %}
+                {% if stock["SUM(shares)"] != 0 %}
+                    <tr>
+                        <td>{{ stock["symbol"] }}</td>
+                        <td>{{ stock["SUM(shares)"] }}</td>
+                        <td>{{ currentPrice[loop.index0] | usd}}</td>
+                        <td>{{ (stock["SUM(shares)"] * currentPrice[loop.index0])  | usd}}</td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+    <table class="table">
+        <tr>
+            <th>Cash in hand:</th>
+            <th>{{ cash }}</th>
+        </tr>
+        <tr>
+            <th>Portfolio value (with cash):</th>
+            <th>{{ total }}</th>
+        </tr>
+    </table>
+{% endblock %}
